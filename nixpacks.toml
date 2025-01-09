@@ -16,6 +16,7 @@ nixPkgs = [
 [phases.install]
 cmds = [
     "echo 'Python dependencies managed by Nix.'"
+    "pip install --no-cache-dir -r requirements.txt"
 ]
 
 [phases.build]
@@ -26,5 +27,5 @@ cmds = [
 ]
 
 [start]
-cmd = "cd backend && gunicorn --bind 0.0.0.0:$PORT app:app"
+cmd = "cd backend && /root/.nix-profile/bin/gunicorn --bind 0.0.0.0:$PORT app:app"
 
