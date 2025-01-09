@@ -1,14 +1,18 @@
 [phases.setup]
-nixPkgs = ["python311", "nodejs"]
+nixPkgs = ["python311", "python311.pip", "nodejs", "gcc"]
 
 [phases.install]
 cmds = [
-    "cd backend && pip install -r requirements.txt",
-    "cd ../frontend && npm install && npm run build"
+    "python -m pip install --upgrade pip",
+    "pip install -r backend/requirements.txt"
 ]
 
 [phases.build]
 cmds = [
-    "cd frontend && npm run build",
-    "cp -r frontend/build backend/static"
+    "cd frontend && npm install && npm run build",
+    "mkdir -p ../backend/static",
+    "cp -r build/* ../backend/static/"
 ]
+
+[start]
+cmd = "cd backend && gunicorn app:app"
