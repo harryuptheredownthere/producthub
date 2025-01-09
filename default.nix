@@ -6,6 +6,7 @@ pkgs.mkShell {
     python311Packages.flask
     python311Packages.flask-cors
     python311Packages.requests
+    python311Packages.urllib3
     python311Packages.pandas
     python311Packages.openpyxl
     python311Packages.python-dotenv
