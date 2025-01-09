@@ -28,14 +28,19 @@ from config import (
     TOKEN_URL,
     CHUNK_SIZE
 )
+if os.getenv('RAILWAY_ENVIRONMENT'):
+    static_folder = 'static'  # For Railway deployment
+else:
+    static_folder = '../frontend/build'  # For local development
 
-app = Flask(__name__, static_folder='../frontend/build')
+app = Flask(__name__, static_folder=static_folder)
 app.secret_key = os.urandom(32)  # Required for sessions
 
+CORS_ORIGINS = os.getenv('CORS_ORIGINS', 'http://localhost:3000').split(',')
 # CORS setup
 CORS(app, 
      resources={r"/*": {
-         "origins": ["http://localhost:3000"],  # Changed from 5173 to 3000
+         "origins": CORS_ORIGINS,  # Use environment variable
          "methods": ["GET", "POST", "OPTIONS"],
          "allow_headers": ["Content-Type", "Accept", "Authorization"],
          "supports_credentials": True
@@ -413,7 +418,7 @@ def onedrive_callback():
     try:
         code = request.args.get('code')
         if not code:
-            return redirect("http://localhost:3000?error=no_code")
+            return redirect(f"{os.getenv('FRONTEND_URL', 'http://localhost:3000')}?error=no_code")
 
         token_data = {
             "client_id": CLIENT_ID,
@@ -433,7 +438,7 @@ def onedrive_callback():
         store_tokens(tokens)  # Store tokens in session
         logger.debug("Tokens stored successfully")
         
-        return redirect("http://localhost:3000?auth=success")
+        return redirect(f"{os.getenv('FRONTEND_URL', 'http://localhost:3000')}?auth=success")
 
     except Exception as e:
         logger.error(f"Callback error: {str(e)}")
