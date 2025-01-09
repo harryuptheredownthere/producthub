@@ -3,9 +3,7 @@ nixPkgs = ["python311", "nodejs", "python3Packages.pip", "gcc"]
 
 [phases.install]
 cmds = [
-    "python3 -m venv /app/venv",
-    "source /app/venv/bin/activate",
-    "pip install --no-cache-dir -r requirements.txt"
+    "echo 'Python dependencies managed by Nix.'"
 ]
 
 [phases.build]
