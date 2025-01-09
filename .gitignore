@@ -1,3 +1,14 @@
+# .gitignore
+.env
+__pycache__/
+*.pyc
+.DS_Store
+node_modules/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.log
 # Python
 __pycache__/
 *.py[cod]
