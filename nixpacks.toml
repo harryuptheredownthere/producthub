@@ -22,9 +22,10 @@ cmds = [
 cmds = [
     "cd frontend && npm install && npm run build",
     "mkdir -p backend/static",
-    "cp -r frontend/build/* backend/static/"
+    "cp -r frontend/build/* backend/static/",
+    "which gunicorn"
 ]
 
 [start]
-cmd = "cd backend && /root/.nix-profile/bin/gunicorn --bind 0.0.0.0:$PORT app:app"
+cmd = "cd backend && python3 -m gunicorn --bind 0.0.0.0:$PORT app:app"
 
