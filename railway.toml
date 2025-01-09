@@ -1,10 +1,6 @@
-[
-build
-]
+[build]
 builder = "nixpacks"
 
-[
-deploy
-]
+[deploy]
 startCommand = "cd backend && gunicorn app:app"
 restartPolicyType = "on_failure"
