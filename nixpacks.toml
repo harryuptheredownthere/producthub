@@ -1,5 +1,17 @@
 [phases.setup]
-nixPkgs = ["python311", "nodejs", "python3Packages.pip", "gcc"]
+nixPkgs = [
+    "python311",
+    "nodejs",
+    "python311Packages.flask",
+    "python311Packages.flask-cors",
+    "python311Packages.requests",
+    "python311Packages.pandas",
+    "python311Packages.openpyxl",
+    "python311Packages.python-dotenv",
+    "python311Packages.gunicorn",
+    "python311Packages.pip",
+    "gcc"
+]
 
 [phases.install]
 cmds = [
@@ -15,3 +27,4 @@ cmds = [
 
 [start]
 cmd = "cd backend && python3 -m gunicorn --bind 0.0.0.0:$PORT app:app"
+
