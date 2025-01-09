@@ -1,11 +1,11 @@
 [phases.setup]
-nixPkgs = ["python311Full", "python3Packages.pip", "nodejs", "gcc"]
+nixPkgs = ["python311", "nodejs"]
 
 [phases.install]
 cmds = [
-    "python3 -m ensurepip --upgrade",
-    "python3 -m pip --version",
-    "python3 -m pip install --no-cache-dir --user -r requirements.txt"
+    "python -m venv /opt/venv",
+    "source /opt/venv/bin/activate",
+    "cd backend && pip install --no-cache-dir -r requirements.txt"
 ]
 
 [phases.build]
@@ -16,4 +16,4 @@ cmds = [
 ]
 
 [start]
-cmd = "cd backend && python3 -m gunicorn --workers=3 --bind 0.0.0.0:$PORT app:app"
+cmd = "source /opt/venv/bin/activate && cd backend && gunicorn app:app --bind 0.0.0.0:$PORT"

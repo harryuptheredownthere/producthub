@@ -2,5 +2,8 @@
 builder = "nixpacks"
 
 [deploy]
-startCommand = "cd backend && python3 -m gunicorn --bind 0.0.0.0:$PORT app:app"
+startCommand = "source /opt/venv/bin/activate && cd backend && gunicorn app:app --bind 0.0.0.0:$PORT"
 restartPolicyType = "on_failure"
+
+[deploy.envs]
+NIXPACKS_PYTHON_VERSION = "3.11"
