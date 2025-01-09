@@ -3,6 +3,8 @@ nixPkgs = ["python311Full", "python3Packages.pip", "nodejs", "gcc"]
 
 [phases.install]
 cmds = [
+    "python3 -m ensurepip --upgrade",
+    "python3 -m pip --version",
     "python3 -m pip install --no-cache-dir --user -r requirements.txt"
 ]
 
