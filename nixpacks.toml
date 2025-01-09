@@ -5,13 +5,21 @@ nixPkgs = [
     "python311Packages.flask",
     "python311Packages.flask-cors",
     "python311Packages.requests",
-    "python311Packages.pandas",
-    "python311Packages.charset-normalizer",
     "python311Packages.urllib3",
+    "python311Packages.charset-normalizer",
+    "python311Packages.pandas",
     "python311Packages.openpyxl",
     "python311Packages.python-dotenv",
     "python311Packages.gunicorn",
     "python311Packages.pip",
+    "python311Packages.setuptools",
+    "python311Packages.wheel",
+    "python311Packages.typing-extensions",
+    "python311Packages.cryptography",
+    "python311Packages.python-dateutil",
+    "python311Packages.six",
+    "python311Packages.certifi",
+    "python311Packages.idna",
     "gcc"
 ]
 
