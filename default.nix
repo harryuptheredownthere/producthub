@@ -1,18 +1,20 @@
 { pkgs ? import <nixpkgs> {} }:
+
 pkgs.mkShell {
   buildInputs = with pkgs; [
-    python311Full
-    nodejs
-    # Python packages
-    python3Packages.flask
-    python3Packages.flask-cors
-    python3Packages.requests
-    python3Packages.pandas
-    python3Packages.openpyxl
-    python3Packages.python-dotenv
-    python3Packages.gunicorn
-    # Development tools
-    python3Packages.pip
-    python3Packages.virtualenv
+    python311
+    python311Packages.flask
+    python311Packages.flask-cors
+    python311Packages.requests
+    python311Packages.pandas
+    python311Packages.openpyxl
+    python311Packages.python-dotenv
+    python311Packages.gunicorn
+    python311Packages.pip
+    gcc
   ];
+
+  shellHook = ''
+    export PYTHONPATH=$PWD/.nix-profile/lib/python3.11/site-packages:$PYTHONPATH
+  '';
 }

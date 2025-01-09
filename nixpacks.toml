@@ -27,5 +27,5 @@ cmds = [
 ]
 
 [start]
-cmd = "cd backend && PYTHONPATH=/root/.nix-profile/lib/python3.11/site-packages python3 -m gunicorn --bind 0.0.0.0:$PORT app:app"
+cmd = "cd backend && python3 -m gunicorn --bind 0.0.0.0:$PORT app:app"
 
