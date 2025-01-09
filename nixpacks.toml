@@ -15,8 +15,7 @@ nixPkgs = [
 
 [phases.install]
 cmds = [
-    "echo 'Python dependencies managed by Nix.'",
-    "pip install --no-cache-dir -r requirements.txt"
+    "echo 'Python dependencies managed by Nix.'"
 ]
 
 [phases.build]
