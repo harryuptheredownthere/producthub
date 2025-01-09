@@ -1,25 +1,17 @@
-[
-phases.setup
-]
+[phases.setup]
 nixPkgs = ["python311Full", "nodejs", "gcc"]
 
-[
-phases.install
-]
+[phases.install]
 cmds = [
-    "cd backend && python3 -m pip install --no-cache-dir --user -r requirements.txt"
+    "python3 -m pip install --no-cache-dir --user -r requirements.txt"
 ]
 
-[
-phases.build
-]
+[phases.build]
 cmds = [
     "cd frontend && npm install && npm run build",
     "mkdir -p ../backend/static",
     "cp -r build/* ../backend/static/"
 ]
 
-[
-start
-]
-cmd = "cd backend && python3 -m gunicorn --bind 0.0.0.0:$PORT app:app"
+[start]
+cmd = "cd backend && python3 -m gunicorn --workers=3 --bind 0.0.0.0:$PORT app:app"
