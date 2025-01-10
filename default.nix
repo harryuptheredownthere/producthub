@@ -4,7 +4,6 @@ pkgs.mkShell {
   buildInputs = with pkgs; [
     python311
     nodejs
-    python311Packages.pip
     gcc
   ];
 
