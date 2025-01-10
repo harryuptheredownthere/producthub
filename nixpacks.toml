@@ -7,16 +7,15 @@ nixPkgs = [
 
 [phases.install]
 cmds = [
-    "python3 -m pip install -r backend/requirements.txt --no-cache-dir"
+    "cd backend && python3 -m pip install -r requirements.txt --no-cache-dir"
 ]
 
 [phases.build]
 cmds = [
     "cd frontend && npm install && npm run build",
-    "mkdir -p backend/static",
-    "cp -r frontend/build/* backend/static/"
+    "mkdir -p ../backend/static",
+    "cp -r build/* ../backend/static/"
 ]
 
 [start]
 cmd = "cd backend && PYTHONPATH=$PYTHONPATH:/root/.nix-profile/lib/python3.11/site-packages gunicorn --bind 0.0.0.0:$PORT app:app"
-
