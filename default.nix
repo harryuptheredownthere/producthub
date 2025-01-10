@@ -10,6 +10,8 @@ pkgs.mkShell {
     python311Packages.charset-normalizer
     python311Packages.pandas
     python311Packages.et_xmlfile
+    python311Packages.numpy
+    python311Packages.pytz
     python311Packages.openpyxl
     python311Packages.python-dotenv
     python311Packages.gunicorn
