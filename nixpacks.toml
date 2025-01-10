@@ -1,15 +1,15 @@
 [phases.setup]
 nixPkgs = [
     "python311",
-    "python311Packages.pip",
     "nodejs",
     "gcc"
 ]
 
 [phases.install]
 cmds = [
-    "python3 -m ensurepip --upgrade",
-    "cd backend && python3 -m pip install -r requirements.txt --no-cache-dir"
+    "curl -sSL https://bootstrap.pypa.io/get-pip.py -o get-pip.py",
+    "python3 get-pip.py --user",
+    "cd backend && python3 -m pip install -r requirements.txt --user --no-cache-dir"
 ]
 
 [phases.build]
